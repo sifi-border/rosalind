@@ -1,7 +1,5 @@
 import urllib.request
 
-protain_list = []
-
 in_f = open("rosalind_xxxx.txt", 'r')
 out_f = open("output.txt", 'w')
 
