@@ -1,3 +1,5 @@
+# http://rosalind.info/problems/mprt/
+
 import urllib.request
 
 def findMotif(protain):
