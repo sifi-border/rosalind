@@ -80,7 +80,7 @@ void solve(void){
 
 	ofstream outputfile("output.txt");
 
-	
+
 
 	outputfile.close();
 
