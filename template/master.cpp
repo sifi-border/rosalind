@@ -63,14 +63,14 @@ const ll MOD = 1e9+7;
 const int dx[]={1,0,-1,0},dy[]={0,1,0,-1};
 //const int dx[]={-1,-1,-1,0,1,1,1,0},dy[]={-1,0,1,1,1,0,-1,-1};
 
-const string base = "ACGT";
+const string base = "ATCG";
 
 int basemap(char c)
 {
 	if (c == 'A') return 0;
-	if (c == 'C') return 1;
-	if (c == 'G') return 2;
-	if (c == 'T') return 3;
+	if (c == 'T') return 1;
+	if (c == 'C') return 2;
+	if (c == 'G') return 3;
 	return -1;
 }
 
