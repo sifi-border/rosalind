@@ -17,6 +17,8 @@
 #include <cassert>
 #include <iomanip>
 #include <fstream>
+#include "Codon_dict.hpp"
+#include "Monoisotopic_mass_table.hpp"
 using namespace std;
 
 #define Rep(b, e, i) for(int i = b; i <= e; i++)
@@ -79,8 +81,6 @@ int basemap(char c)
 void solve(void){
 
 	ofstream outputfile("output.txt");
-
-
 
 	outputfile.close();
 
