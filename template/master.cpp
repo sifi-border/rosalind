@@ -76,11 +76,27 @@ int basemap(char c)
 	return -1;
 }
 
+//fasta format
+string readg()
+{
+	string res = "";
+
+	char nowc;
+
+	while(~scanf("%c\n", &nowc))
+	{
+		if (nowc == '>') break;
+		if (basemap(nowc) >= 0) res.pb(nowc);
+	}
+
+	return res;
+}
+
 //********************************template END****************************************//
 
-void solve(void){
+ofstream outputfile("output.txt");
 
-	ofstream outputfile("output.txt");
+void solve(void){
 
 	outputfile.close();
 
