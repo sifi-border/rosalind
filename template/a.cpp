@@ -100,6 +100,13 @@ ofstream outputfile("output.txt");
 void solve(void)
 {
 
+	string ns, s1, s2;
+	cin >> ns;
+	s1 = readg();
+	cin >> ns;
+	s2 = readg();
+
+
 
 
 
