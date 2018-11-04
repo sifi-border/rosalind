@@ -96,13 +96,18 @@ string readg()
 
 ofstream outputfile("output.txt");
 
-void solve(void){
+void solve(void)
+{
+
+
+
 
 	outputfile.close();
 
 }
 
-int main(void){
+int main(void)
+{
 	solve();
 	//cout << "yui(*-v・)yui" << endl;
 	return 0;
