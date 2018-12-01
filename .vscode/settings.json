@@ -2,8 +2,8 @@
 	"clang.cxxflags": [
 		"-std=gnu++14"
 	],
-	"runner.languageMap": {
-		"cpp": "./clang.sh"
-	},
-
+	"code-runner.executorMap": {
+		"cpp": "cd $dir && g++ -O2 -std=c++14 $fileName && ./a.out",
+		"python": "python -u",
+	}
 }
