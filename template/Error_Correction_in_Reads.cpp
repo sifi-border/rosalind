@@ -39,9 +39,7 @@ using namespace std;
 #define putbd cout << "---------------------------------------------" << endl;
 #define putln(x) cout << x << endl;
 #define debug(x) cerr << #x << "=" << x << endl;
-#define ENJYU                         \
-	std::ios::sync_with_stdio(false); \
-	std::cin.tie(0);
+#define ENJYU std::ios::sync_with_stdio(false);std::cin.tie(0);
 
 typedef long long ll;
 typedef pair<ll, ll> llP;
@@ -84,14 +82,10 @@ ofstream outputfile("output.txt");
 
 int basemap(char c)
 {
-	if (c == 'A')
-		return 0;
-	if (c == 'T' || c == 'U')
-		return 1;
-	if (c == 'C')
-		return 2;
-	if (c == 'G')
-		return 3;
+	if (c == 'A') return 0;
+	if (c == 'T' || c == 'U') return 1;
+	if (c == 'C') return 2;
+	if (c == 'G') return 3;
 	return -1;
 }
 
@@ -100,15 +94,13 @@ string readg(string buf)
 {
 	string res = "";
 
-	if (buf[0] == '>')
-		return res;
+	if (buf[0] == '>') return res;
 
 	char nowc;
 
 	for (char nowc : buf)
 	{
-		if (basemap(nowc) >= 0)
-			res.pb(nowc);
+		if (basemap(nowc) >= 0) res.pb(nowc);
 	}
 
 	return res;
@@ -119,7 +111,7 @@ string rev_complement(string strand)
 	string res = "";
 	for (char c : strand)
 	{
-		res.pb(dna_base[basemap(c) ^ 1]);
+		res.pb(dna_base[basemap(c)^1]);
 	}
 	reverse(all(res));
 
@@ -128,16 +120,47 @@ string rev_complement(string strand)
 
 //********************************template END****************************************//
 
-ofstream outputfile("output.txt");
-
 void solve(void)
 {
+	if (inputfile.fail())
+	{
+		cout << "FILE READ ERROE" << endl;
+		return;
+	}
 
+	string t, buf;
+	map<string, int> mp;
+	vector<string> ans;
+	while (getline(inputfile, buf))
+	{
+		t = readg(buf);
+		if (t == "") continue;
+		mp[t]++;
+		mp[rev_complement(t)]++;
+		ans.pb(t);
+	}
 
+	sort(all(ans));
+	uniq(ans);
 
+	for (auto a : ans)
+	{
+		if (mp[a] > 1) continue;
+		rep(a.size(), l) rep(4, i)
+		{
+			string b = a;
+			b[l] = dna_base[i];
+			if (mp[b] > 1)
+			{
+				cout << a << "->" << b << endl;
+				outputfile << a << "->" << b << endl;
+				l = INF, i = 4;
+				break;
+			}
+		}
+	}
 
 	outputfile.close();
-
 }
 
 int main(void)

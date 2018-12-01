@@ -19,7 +19,7 @@
 #include <fstream>
 #include "Codon_dict.hpp"
 #include "Monoisotopic_mass_table.hpp"
-#include "tabaityo.hpp"
+//#include "tabaityo.hpp"
 using namespace std;
 
 #define Rep(b, e, i) for(int i = b; i <= e; i++)
@@ -61,17 +61,18 @@ const double PI = 3.14159265358979323846;
 const double EPS = 1e-12;
 const int INF = 1<<29;
 const ll INFL = 1e18;
-const ll MOD = 1e9+7;
+const ll MOD = 1e6;
 
 const int dx[]={1,0,-1,0},dy[]={0,1,0,-1};
 //const int dx[]={-1,-1,-1,0,1,1,1,0},dy[]={-1,0,1,1,1,0,-1,-1};
 
-const string base = "ATCG";
+const string dna_base = "ATCG";
+const string rna_base = "AUCG";
 
 int basemap(char c)
 {
 	if (c == 'A') return 0;
-	if (c == 'T') return 1;
+	if (c == 'T' || c == 'U') return 1;
 	if (c == 'C') return 2;
 	if (c == 'G') return 3;
 	return -1;
@@ -97,18 +98,39 @@ string readg()
 
 ofstream outputfile("output.txt");
 
+string S;
+ll dp[1<<9][1<<9];
+
+ll rec(int l, int r)
+{
+	if (~dp[l][r]) return dp[l][r];
+	if (l+1 == r)
+	{
+		return dp[l][r] = (basemap(S[l])^basemap(S[r])) == 1;
+	}
+	ll tmp = ((basemap(S[l])^basemap(S[r])) == 1) ? rec(l+1, r-1) : 0;
+	for (int c = l+1; c < r; c += 2)
+	{
+		tmp += rec(l, c) * rec(c+1, r) % MOD;
+		tmp %= MOD;
+	}
+	return dp[l][r] = tmp;
+}
+
 void solve(void)
 {
 
-	string ns, s1, s2;
-	cin >> ns;
-	s1 = readg();
-	cin >> ns;
-	s2 = readg();
+	cin >> S;
+	S = readg();
 
+	memset(dp, -1, sizeof(dp));
 
+	cout << S << endl;
 
+	ll ans = rec(0, (int)S.size()-1);
 
+	cout << ans << endl;
+	outputfile << ans << endl;
 
 	outputfile.close();
 

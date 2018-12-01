@@ -1,0 +1,9 @@
+{
+	"clang.cxxflags": [
+		"-std=gnu++14"
+	],
+	"runner.languageMap": {
+		"cpp": "./clang.sh"
+	},
+
+}
