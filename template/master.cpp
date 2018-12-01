@@ -1,4 +1,4 @@
-#include "bits/c++.h"
+#include "bits/stdc++.h"
 #include "Codon_dict.hpp"
 #include "Monoisotopic_mass_table.hpp"
 //#include "tabaityo.hpp"
@@ -21,9 +21,7 @@ using namespace std;
 #define putbd cout << "---------------------------------------------" << endl;
 #define putln(x) cout << x << endl;
 #define debug(x) cerr << #x << "=" << x << endl;
-#define ENJYU                         \
-	std::ios::sync_with_stdio(false); \
-	std::cin.tie(0);
+#define ENJYU std::ios::sync_with_stdio(false);std::cin.tie(0);
 
 typedef long long ll;
 typedef pair<ll, ll> llP;
@@ -36,7 +34,6 @@ typedef vector<vec> mat;
 typedef vector<vecll> matll;
 typedef vector<vecd> matd;
 
-//vector の中身を出力
 template <class T>
 ostream &operator<<(ostream &o, const vector<T> &v)
 {
@@ -66,14 +63,10 @@ ofstream outputfile("output.txt");
 
 int basemap(char c)
 {
-	if (c == 'A')
-		return 0;
-	if (c == 'T' || c == 'U')
-		return 1;
-	if (c == 'C')
-		return 2;
-	if (c == 'G')
-		return 3;
+	if (c == 'A') return 0;
+	if (c == 'T' || c == 'U') return 1;
+	if (c == 'C') return 2;
+	if (c == 'G') return 3;
 	return -1;
 }
 
@@ -82,15 +75,13 @@ string readg(string buf)
 {
 	string res = "";
 
-	if (buf[0] == '>')
-		return res;
+	if (buf[0] == '>') return res;
 
 	char nowc;
 
 	for (char nowc : buf)
 	{
-		if (basemap(nowc) >= 0)
-			res.pb(nowc);
+		if (basemap(nowc) >= 0) res.pb(nowc);
 	}
 
 	return res;
@@ -110,14 +101,23 @@ string rev_complement(string strand)
 
 //********************************template END****************************************//
 
-ofstream outputfile("output.txt");
-
 void solve(void)
 {
+	if (inputfile.fail())
+	{
+		cout << "FILE READ ERROR" << endl;
+		return;
+	}
 
+	//input
+	string buf, strand;
+	while (getline(inputfile, buf))
+	{
+		strand = readg(buf);
+		if (strand == "") continue;
+	}
 
-
-
+	inputfile.close();
 	outputfile.close();
 
 }
