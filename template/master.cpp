@@ -110,11 +110,12 @@ void solve(void)
 	}
 
 	//input
-	string buf, strand;
+	string buf, strand = "";
+	getline(inputfile, buf);
 	while (getline(inputfile, buf))
 	{
-		strand = readg(buf);
-		if (strand == "") continue;
+		strand += readg(buf);
+		if (strand == "") break;
 	}
 
 	inputfile.close();
